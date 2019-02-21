@@ -1,0 +1,23 @@
+{
+  "name": "hunter-robin-express-apps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thinkful-ei-armadillo/hunter-robin-express-apps.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thinkful-ei-armadillo/hunter-robin-express-apps/issues"
+  },
+  "homepage": "https://github.com/thinkful-ei-armadillo/hunter-robin-express-apps#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
