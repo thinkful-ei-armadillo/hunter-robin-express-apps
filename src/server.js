@@ -1,7 +1,18 @@
 'use strict';
 
-const app = require('./app.js');
+const express = require('express');
+const morgan = require('morgan');
 
-app.listen(8000, ()=> {
-  console.log('express server is listening');
+const app = express();
+
+app.use(morgan('dev'));
+
+app.use((req, res) => {
+  res.send('Hello, world!');
+});
+
+const PORT = 8000;
+
+app.listen(PORT, () => {
+  console.log(`Server listening at http://localhost:${PORT}`);
 });
