@@ -16,21 +16,51 @@ app.get('/movies', (req, res) => {
   const country = req.query.country;
   const avg_vote = req.query.avg_vote;
   let results = movies;
+  // let countries = results.map(el => {
+  //   return el.country;
+  // });
+  // let g1 = results.map(el => {
+  //   return el.genre;
+  // });
+
   
-  if(genre){
-    results = results.filter(el => el.genre.includes(genre));
+  if (genre) {
+    if (
+      ![
+        'animation',
+        'drama',
+        'romantic',
+        'comedy',
+        'spy',
+        'thriller',
+        'crime'
+      ].includes(genre.toLowerCase())
+    ) {
+      return res
+        .status(400)
+        .send('Genres must be one of animation, drama, romantic, comedy etc..');
+    }
+    results = results.filter(el => el.genre.toLowerCase().includes(genre.toLowerCase()));
   }
-  if(country){
-    results = results.filter(el => el.country.includes(country));
-    
+  console.log(country);
+  if (country) {
+    if (!['spain', 'italy', 'united states', 'germany', 'great britain'].includes(country.toLowerCase())) {
+      return res
+        .status(400)
+        .send(
+          'Country must be Spain, Italy, United States, Germany, Great Britain'
+        );
+    }
+    results = results.filter(el => el.country.toLowerCase().includes(country.toLowerCase()));
   }
-  if(avg_vote){
+  if (avg_vote) {
+    if(avg_vote < 0 || avg_vote > 10){
+      return res.status(400).send('average vote must be between 1 and 10');
+    }
     results = results.filter(el => el.avg_vote === parseFloat(avg_vote));
   }
-  
-  res.send(results);
 
- 
+  res.send(results);
 });
 
 module.exports = app;
