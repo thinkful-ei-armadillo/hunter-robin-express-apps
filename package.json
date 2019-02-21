@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "start",
-    "dev": "nodeman server"
+    "start": "node server.js",
+    "dev": "nodeman server.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,8 @@
     "morgan": "^1.9.1"
   },
   "devDependencies": {
-    "nodeman": "^1.1.2"
+    "cors": "^2.8.5",
+    "nodeman": "^1.1.2",
+    "nodemon": "^1.18.10"
   }
 }
