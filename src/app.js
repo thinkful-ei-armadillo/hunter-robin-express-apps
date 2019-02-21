@@ -1,16 +1,17 @@
 'use strict';
-
+require('dotenv').config();
 const cors = require('cors');
 const express = require('express');
 const morgan = require('morgan');
 const movies = require('./store.js');
+console.log(process.env);
 const app = express();
 
 app.use(morgan('dev'));
 app.use((req, res, next) => {
+
   next();
 });
-
 app.get('/movies', (req, res) => {
   const genre = req.query.genre;
   const country = req.query.country;
@@ -25,16 +26,7 @@ app.get('/movies', (req, res) => {
 
   
   if (genre) {
-    if (
-      ![
-        'animation',
-        'drama',
-        'romantic',
-        'comedy',
-        'spy',
-        'thriller',
-        'crime'
-      ].includes(genre.toLowerCase())
+    if (!['animation', 'drama', 'romantic', 'comedy', 'spy','thriller', 'crime'].includes(genre.toLowerCase())
     ) {
       return res
         .status(400)
@@ -42,7 +34,7 @@ app.get('/movies', (req, res) => {
     }
     results = results.filter(el => el.genre.toLowerCase().includes(genre.toLowerCase()));
   }
-  console.log(country);
+ 
   if (country) {
     if (!['spain', 'italy', 'united states', 'germany', 'great britain'].includes(country.toLowerCase())) {
       return res
